@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f3f0">
+  <meta name="description" content="Docky: Dock modular para macOS con workspaces independientes, paneles de widgets, 14 temas visuales, actividades en vivo y coordinación opcional con Notchy.">
+  <title>Docky — Un Dock modular para tu Mac</title>
+  <script>/* embed mode: ?embed=1 or #embed. Also reports content height to the parent page so the iframe can fit it. */(function(){var l=location,d=document.documentElement;if(!(/[?&]embed=1(&|$)/.test(l.search)||l.hash==="#embed"))return;d.classList.add("is-embed");var s=function(){parent.postMessage({embedHeight:d.scrollHeight,src:l.pathname},"*")};addEventListener("load",function(){s();if(window.ResizeObserver)new ResizeObserver(s).observe(document.body)})})();</script><link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="simulator.css">
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#inicio">Saltar al contenido principal</a>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand-group">
+        <a class="brand" href="#inicio" aria-label="Docky, volver al inicio">
+          <span class="brand-mark" aria-hidden="true">●</span> docky<span class="brand-period">.</span>
+        </a>
+        <a class="suite-pill" href="../notchy/index.html" title="Ir a la web de Notchy">Notchy ↗</a>
+      </div>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#experiencia">Experiencia</a>
+        <a href="#simulador">Pruébalo</a>
+        <a href="#temas">Temas</a>
+        <a href="#capturas">Vídeos</a>
+        <a href="#workspaces">Workspaces</a>
+        <a href="#widgets">Widgets</a>
+        <a class="button" href="#empezar">Cómo empezar</a>
+      </nav>
+    </div>
+  </header>
+<div class="soon-banner" role="note"><span class="soon-tag">PRÓXIMAMENTE…</span><span class="soon-text">Docky estará disponible para descargar muy pronto.</span></div>
+
+  <main id="inicio">
+    <section class="hero container">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pill">PARA MAC</span> Workspaces, widgets y temas</p>
+        <h1 class="hero-title">Tu Dock,<br><span>con contexto.</span></h1>
+        <p class="lead">
+          Docky es un Dock modular y flotante para macOS. Reúne espacios de trabajo independientes,
+          paneles de widgets, 14 temas visuales y actividades en vivo, con coordinación opcional
+          junto a Notchy.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#simulador">Probar simulador</a>
+          <a class="button" href="#empezar">Cómo compilar</a>
+        </div>
+        <p class="note">macOS 14 o posterior · Swift, SwiftUI y AppKit · Compilación local desde código fuente</p>
+      </div>
+
+      <div class="hero-visual">
+        <figure class="app-shot">
+          <video
+            class="app-video ratio-hero"
+            muted
+            autoplay
+            loop
+            playsinline
+            preload="metadata"
+            poster="assets/video/hero-notchy-nota-rapida-poster.png"
+            aria-label="Grabación real de Docky con Notchy Glass y el panel de Nota rápida sobre el Dock"
+          >
+            <source src="assets/video/hero-notchy-nota-rapida.mp4" type="video/mp4">
+          </video>
+          <figcaption class="mock-caption">Grabación real de Docky con Notchy Glass · panel de Nota rápida sobre el Dock</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="experience section container" id="experiencia">
+      <div class="section-head">
+        <p class="eyebrow">ASÍ SE VE EN TU MAC</p>
+        <h2>Un Dock.<br>Varios espacios.</h2>
+        <p>
+          Grabaciones reales de la aplicación en funcionamiento: cambio entre workspaces con sus
+          propias apps y widgets interactivos desplegados sobre el Dock.
+        </p>
+      </div>
+
+      <div class="real-stories">
+        <article class="real-story real-story-main" id="workspaces-live">
+          <div class="story-head">
+            <div class="story-copy">
+              <span class="story-label">WORKSPACES EN MOVIMIENTO</span>
+              <h3>Cambia de contexto al instante.</h3>
+              <p>
+                Alterna entre espacios como Ocio &amp; Chill, Comunes o Programación. Cada workspace
+                conserva sus propias aplicaciones fijadas, carpetas, separadores y widgets.
+              </p>
+            </div>
+            <div class="ws-video-toggle" role="group" aria-label="Elegir grabación de workspaces">
+              <button type="button" class="ws-video-btn" data-ws-video="workspaces" aria-pressed="true">Liquid Glass</button>
+              <button type="button" class="ws-video-btn" data-ws-video="workspaces-notchy" aria-pressed="false">Notchy Glass</button>
+              <button type="button" class="ws-video-btn" data-ws-video="workspaces-christmas" aria-pressed="false">Christmas</button>
+              <button type="button" class="ws-video-btn" data-ws-video="workspaces-pro" aria-pressed="false">Vista completa</button>
+            </div>
+          </div>
+          <figure class="story-media">
+            <div class="dock-frame">
+              <video
+                class="story-video ratio-workspace"
+                muted
+                autoplay
+                loop
+                playsinline
+                preload="metadata"
+                poster="assets/video/workspaces-poster.png"
+                aria-label="Grabación real de cambio entre workspaces en Docky"
+              >
+                <source src="assets/video/workspaces.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption id="ws-video-caption">Cambio entre workspaces · grabación real con Liquid Glass</figcaption>
+          </figure>
+        </article>
+
+        <div class="real-stories-trio">
+          <article class="real-story">
+            <figure class="story-media">
+              <div class="story-video-frame">
+                <video
+                  class="story-video"
+                  muted
+                  autoplay
+                  loop
+                  playsinline
+                  preload="metadata"
+                  poster="assets/video/crop/widget-calendario-poster.png"
+                  aria-label="Grabación real del widget Calendario de Docky"
+                >
+                  <source src="assets/video/crop/widget-calendario.mp4" type="video/mp4">
+                </video>
+              </div>
+              <figcaption>Widget Calendario (EventKit) · grabación real</figcaption>
+            </figure>
+            <div class="story-copy">
+              <span class="story-label">AGENDA</span>
+              <h3>Tu calendario, sobre el Dock.</h3>
+              <p>
+                Consulta eventos próximos, cuadrícula mensual y agenda del día sin abandonar tu
+                ventana actual.
+              </p>
+            </div>
+          </article>
+
+          <article class="real-story">
+            <figure class="story-media">
+              <div class="story-video-frame">
+                <video
+                  class="story-video"
+                  muted
+                  autoplay
+                  loop
+                  playsinline
+                  preload="metadata"
+                  poster="assets/video/crop/widget-file-shelf-poster.png"
+                  aria-label="Grabación real del widget Bandeja de archivos de Docky"
+                >
+                  <source src="assets/video/crop/widget-file-shelf.mp4" type="video/mp4">
+                </video>
+              </div>
+              <figcaption>Widget Bandeja de archivos · grabación real</figcaption>
+            </figure>
+            <div class="story-copy">
+              <span class="story-label">PRODUCTIVIDAD</span>
+              <h3>Archivos siempre a mano.</h3>
+              <p>
+                Deja archivos temporalmente en la bandeja flotante y recupéralos cuando cambies de
+                aplicación o workspace.
+              </p>
+            </div>
+          </article>
+
+          <article class="real-story">
+            <figure class="story-media">
+              <div class="story-video-frame">
+                <video
+                  class="story-video"
+                  muted
+                  autoplay
+                  loop
+                  playsinline
+                  preload="metadata"
+                  poster="assets/video/crop/widget-nota-rapida-poster.png"
+                  aria-label="Grabación real del widget Nota rápida de Docky"
+                >
+                  <source src="assets/video/crop/widget-nota-rapida.mp4" type="video/mp4">
+                </video>
+              </div>
+              <figcaption>Widget Nota rápida · grabación real</figcaption>
+            </figure>
+            <div class="story-copy">
+              <span class="story-label">APUNTES</span>
+              <h3>Ideas sin cambiar de app.</h3>
+              <p>
+                Despliega una nota rápida directamente sobre el Dock para guardar enlaces, comandos
+                o recordatorios al vuelo.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="simulador">
+      <div class="section-head">
+        <p class="eyebrow">SIMULADOR INTERACTIVO</p>
+        <h2>Pruébalo aquí.<br>Es el mismo Dock.</h2>
+        <p>
+          Réplica fiel de Docky con sus workspaces reales, sus 14 temas y sus widgets: cambia de workspace
+          con <kbd>⌃</kbd><kbd>⌥</kbd><kbd>1</kbd>–<kbd>3</kbd>, pasa el cursor para la magnificación, abre los paneles
+          y activa la <strong>pantalla completa</strong> para ver cómo Notchy toma el relevo del volumen y el brillo.
+        </p>
+      </div>
+
+      <div class="dk-shell">
+        <div class="dk-toolbar">
+          <div class="dk-group" role="group" aria-label="Workspace">
+            <span class="dk-label">Workspace</span>
+            <div class="dk-chips" id="dk-ws-chips"></div>
+          </div>
+          <div class="dk-group dk-group-grow" role="group" aria-label="Tema">
+            <span class="dk-label">Tema</span>
+            <div class="dk-chips dk-chips-scroll" id="dk-theme-chips"></div>
+          </div>
+          <div class="dk-group" role="group" aria-label="Opciones">
+            <span class="dk-label">Pantalla</span>
+            <div class="dk-chips">
+              <button type="button" class="dk-chip" id="dk-full" aria-pressed="false">Pantalla completa</button>
+              <button type="button" class="dk-chip" id="dk-icons" aria-pressed="true">Iconos temáticos</button>
+              <button type="button" class="dk-chip" id="dk-pet" aria-pressed="true">Mascota</button>
+            </div>
+          </div>
+          <div class="dk-group" role="group" aria-label="Volumen y brillo">
+            <span class="dk-label">HUD</span>
+            <div class="dk-chips">
+              <button type="button" class="dk-chip" data-dk-hud="vol-">Vol −</button>
+              <button type="button" class="dk-chip" data-dk-hud="vol+">Vol +</button>
+              <button type="button" class="dk-chip" data-dk-hud="bri-">Brillo −</button>
+              <button type="button" class="dk-chip" data-dk-hud="bri+">Brillo +</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dk-screen" id="dk-screen" data-theme="notchyGlass" data-icons="glass">
+          <div class="dk-wall" aria-hidden="true"></div>
+          <div class="dk-fx" id="dk-fx" aria-hidden="true"></div>
+
+          <div class="dk-menubar" id="dk-menubar">
+            <div class="dk-menu-left"><b>Docky</b><span>Archivo</span><span>Edición</span><span>Ver</span><span>Ventana</span></div>
+            <div class="dk-menu-right">
+              <button type="button" class="dk-ws-menu" id="dk-ws-menu" aria-haspopup="true" aria-expanded="false"></button>
+              <span id="dk-clock">14:27</span>
+              <div class="dk-ws-drop" id="dk-ws-drop" hidden></div>
+            </div>
+          </div>
+
+          <div class="dk-notch" id="dk-notch" aria-hidden="true">
+            <div class="dk-notch-hud" id="dk-notch-hud"></div>
+          </div>
+
+          <div class="dk-fullapp" id="dk-fullapp" aria-hidden="true">
+            <div class="dk-fa-bar"><i></i><i></i><i></i></div>
+            <div class="dk-fa-body">
+              <div class="dk-fa-side"><b></b><b></b><b></b><b></b><b></b></div>
+              <div class="dk-fa-main"><b class="w60"></b><b class="w80"></b><b class="w40"></b><b class="w70"></b><b class="w55"></b><b class="w90"></b><b class="w35"></b><b class="w65"></b></div>
+            </div>
+            <p class="dk-fa-note">App en pantalla completa · el Dock se oculta · Notchy muestra el volumen y el brillo</p>
+          </div>
+
+          <div class="dk-stack" id="dk-stack">
+            <div class="dk-upper" id="dk-upper"></div>
+            <div class="dk-lights" id="dk-lights" aria-hidden="true"></div>
+            <div class="dk-dock" id="dk-dock" aria-label="Dock de Docky"></div>
+          </div>
+        </div>
+
+        <div class="dk-hint">
+          <span id="dk-status">HUD de volumen y brillo: <b>Docky</b> (Dock visible)</span>
+          <span>Simulación en el navegador · mismos workspaces, widgets y temas que la app</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="temas">
+      <div class="section-head">
+        <p class="eyebrow">A TU ESTILO</p>
+        <h2>14 temas.<br>Siete grabados en vivo.</h2>
+        <p>
+          El editor de ajustes controla el tema, tinte, iconos tematizados o nativos y efectos
+          ambientales. Liquid Glass usa la API de macOS 26 cuando está disponible y aplica un
+          respaldo translúcido en versiones anteriores.
+        </p>
+      </div>
+
+      <div class="theme-stage">
+        <div class="theme-tabs" role="group" aria-label="Elegir tema grabado">
+          <button class="theme-tab" type="button" data-theme="liquidGlass" aria-pressed="true">Liquid Glass</button>
+          <button class="theme-tab" type="button" data-theme="notchyGlass" aria-pressed="false">Notchy Glass</button>
+          <button class="theme-tab" type="button" data-theme="cyberNeon" aria-pressed="false">Cyber Neon</button>
+          <button class="theme-tab" type="button" data-theme="sunsetWarm" aria-pressed="false">Sunset Warm</button>
+          <button class="theme-tab" type="button" data-theme="pixelRetro" aria-pressed="false">Pixel Retro</button>
+          <button class="theme-tab" type="button" data-theme="christmas" aria-pressed="false">Christmas</button>
+          <button class="theme-tab" type="button" data-theme="neonRain" aria-pressed="false">Neon Rain</button>
+        </div>
+
+        <div class="theme-screen">
+          <video
+            class="theme-video ratio-theme"
+            controls
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="assets/temas/liquidGlass.png"
+            aria-label="Grabación real de Docky con el tema seleccionado"
+          >
+            <source src="assets/temas/liquidGlass.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="theme-controls">
+          <p class="theme-caption" id="theme-caption">
+            <strong>Liquid Glass:</strong> superficie cristalina translúcida (API macOS 26 con respaldo en versiones previas).
+          </p>
+          <span class="tag">Grabación real · 1150 × 94</span>
+        </div>
+      </div>
+
+      <div class="space-strip" aria-label="Capturas de los siete temas grabados de Docky">
+        <button class="space-card" type="button" data-theme-pick="liquidGlass" aria-pressed="true">
+          <img src="assets/temas/liquidGlass.png" alt="Tema Liquid Glass de Docky" loading="lazy" width="1150" height="94">
+          <span>Liquid Glass</span>
+        </button>
+        <button class="space-card" type="button" data-theme-pick="notchyGlass" aria-pressed="false">
+          <img src="assets/temas/notchyGlass.png" alt="Tema Notchy Glass de Docky" loading="lazy" width="1150" height="94">
+          <span>Notchy Glass</span>
+        </button>
+        <button class="space-card" type="button" data-theme-pick="cyberNeon" aria-pressed="false">
+          <img src="assets/temas/cyberNeon.png" alt="Tema Cyber Neon de Docky" loading="lazy" width="1150" height="94">
+          <span>Cyber Neon</span>
+        </button>
+        <button class="space-card" type="button" data-theme-pick="sunsetWarm" aria-pressed="false">
+          <img src="assets/temas/sunsetWarm.png" alt="Tema Sunset Warm de Docky" loading="lazy" width="1150" height="94">
+          <span>Sunset Warm</span>
+        </button>
+        <button class="space-card" type="button" data-theme-pick="pixelRetro" aria-pressed="false">
+          <img src="assets/temas/pixelRetro.png" alt="Tema Pixel Retro de Docky" loading="lazy" width="1150" height="94">
+          <span>Pixel Retro</span>
+        </button>
+        <button class="space-card" type="button" data-theme-pick="christmas" aria-pressed="false">
+          <img src="assets/temas/christmas.png" alt="Tema Christmas de Docky" loading="lazy" width="1150" height="94">
+          <span>Christmas</span>
+        </button>
+        <button class="space-card" type="button" data-theme-pick="neonRain" aria-pressed="false">
+          <img src="assets/temas/neonRain.png" alt="Tema Neon Rain de Docky" loading="lazy" width="1150" height="94">
+          <span>Neon Rain</span>
+        </button>
+      </div>
+
+      <div class="more-drawer-wrap">
+        <button type="button" class="more-drawer-btn" aria-expanded="false" aria-controls="more-themes-drawer">
+          <span>Y 7 temas más incluidos en la app…</span>
+          <span class="more-drawer-chevron" aria-hidden="true">+</span>
+        </button>
+        <div class="more-drawer" id="more-themes-drawer" hidden>
+          <div class="more-drawer-grid">
+            <div class="more-chip"><strong>System Default</strong><span>Estilo nativo translúcido de macOS</span></div>
+            <div class="more-chip"><strong>Clear Glass</strong><span>Cristal limpio y minimalista</span></div>
+            <div class="more-chip"><strong>Obsidian Black</strong><span>Superficie oscura profunda de alto contraste</span></div>
+            <div class="more-chip"><strong>Midnight Minimal</strong><span>Azul noche discreto y elegante</span></div>
+            <div class="more-chip"><strong>Bento</strong><span>Tarjetas definidas con separación modular</span></div>
+            <div class="more-chip"><strong>Lo-fi Cozy</strong><span>Tonos cálidos y ambiente relajado</span></div>
+            <div class="more-chip"><strong>Pixel Night</strong><span>Estética pixel-art en paleta nocturna</span></div>
+          </div>
+          <p class="more-drawer-note">
+            Las preferencias del sistema <em>Reducir movimiento</em> y <em>Reducir transparencia</em> modulan automáticamente las decoraciones animadas compatibles.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VÍDEOS REALES DE WIDGETS Y CAPTURAS POR TEMA -->
+    <section class="section container" id="capturas">
+      <div class="section-head">
+        <p class="eyebrow">WIDGETS EN VÍDEO</p>
+        <h2>Nueve widgets grabados<br>en acción.</h2>
+        <p>
+          Explora cada panel interactivo tal y como se despliega sobre el Dock. El panel de GitHub
+          usa datos de muestra, no tu actividad real.
+        </p>
+      </div>
+
+      <div class="widget-stage" id="widget-stage">
+        <div class="widget-tabs" role="group" aria-label="Elegir widget grabado">
+          <button class="widget-tab" type="button" data-widget="calendario" aria-pressed="true">Calendario</button>
+          <button class="widget-tab" type="button" data-widget="nota-rapida" aria-pressed="false">Nota rápida</button>
+          <button class="widget-tab" type="button" data-widget="file-shelf" aria-pressed="false">Bandeja</button>
+          <button class="widget-tab" type="button" data-widget="musica" aria-pressed="false">Música</button>
+          <button class="widget-tab" type="button" data-widget="clima" aria-pressed="false">Tiempo</button>
+          <button class="widget-tab" type="button" data-widget="reloj-mundial" aria-pressed="false">Reloj mundial</button>
+          <button class="widget-tab" type="button" data-widget="ajustes-rapidos" aria-pressed="false">Ajustes rápidos</button>
+          <button class="widget-tab" type="button" data-widget="cpu-memoria" aria-pressed="false">CPU y memoria</button>
+          <button class="widget-tab" type="button" data-widget="github" aria-pressed="false">GitHub</button>
+        </div>
+
+        <div class="widget-screen">
+          <video
+            class="widget-stage-video is-square"
+            controls
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="assets/widgets/calendario-poster.png"
+            aria-label="Grabación real del widget seleccionado en Docky"
+          >
+            <source src="assets/widgets/calendario.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="widget-controls">
+          <p class="widget-caption" id="widget-stage-caption">
+            <strong>Calendario:</strong> Eventos próximos, cuadrícula mensual y agenda del día con EventKit.
+          </p>
+          <div class="widget-nav">
+            <span class="widget-counter" id="widget-stage-counter">1 / 9</span>
+            <button type="button" class="widget-nav-btn" id="widget-prev" aria-label="Widget anterior">←</button>
+            <button type="button" class="widget-nav-btn" id="widget-next" aria-label="Widget siguiente">→</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="widget-video-grid" aria-label="Miniaturas de los nueve widgets grabados en vídeo">
+        <button class="widget-video-card" type="button" data-widget-pick="calendario" aria-pressed="true">
+          <div class="widget-thumb">
+            <img src="assets/widgets/calendario-poster.png" alt="Widget Calendario y próximo evento" loading="lazy" width="1200" height="954">
+            <span class="widget-play-badge" aria-hidden="true">▶</span>
+          </div>
+          <div class="widget-card-meta">
+            <strong>Calendario</strong>
+            <span>EventKit</span>
+          </div>
+        </button>
+
+        <button class="widget-video-card" type="button" data-widget-pick="nota-rapida" aria-pressed="false">
+          <div class="widget-thumb">
+            <img src="assets/widgets/nota-rapida-poster.png" alt="Widget Nota rápida" loading="lazy" width="2000" height="1000">
+            <span class="widget-play-badge" aria-hidden="true">▶</span>
+          </div>
+          <div class="widget-card-meta">
+            <strong>Nota rápida</strong>
+            <span>Apuntes</span>
+          </div>
+        </button>
+
+        <button class="widget-video-card" type="button" data-widget-pick="file-shelf" aria-pressed="false">
+          <div class="widget-thumb">
+            <img src="assets/widgets/file-shelf-poster.png" alt="Widget Bandeja de archivos" loading="lazy" width="2000" height="1000">
+            <span class="widget-play-badge" aria-hidden="true">▶</span>
+          </div>
+          <div class="widget-card-meta">
+            <strong>Bandeja de archivos</strong>
+            <span>Drag &amp; Drop</span>
+          </div>
+        </button>
+
+        <button class="widget-video-card" type="button" data-widget-pick="musica" aria-pressed="false">
+          <div class="widget-thumb">
+            <img src="assets/widgets/musica-poster.png" alt="Widget Reproductor de música" loading="lazy" width="2000" height="1000">
+            <span class="widget-play-badge" aria-hidden="true">▶</span>
+          </div>
+          <div class="widget-card-meta">
+            <strong>Música</strong>
+            <span>Multimedia</span>
+          </div>
+        </button>
+
+        <button class="widget-video-card" type="button" data-widget-pick="clima" aria-pressed="false">
+          <div class="widget-thumb">
+            <img src="assets/widgets/clima-poster.png" alt="Widget Previsión del tiempo" loading="lazy" width="2000" height="1000">
+            <span class="widget-play-badge" aria-hidden="true">▶</span>
+          </div>
+          <div class="widget-card-meta">
+            <strong>Previsión del tiempo</strong>
+            <span>Open-Meteo</span>
+          </div>
+        </button>
+
+        <button class="widget-video-card" type="button" data-widget-pick="reloj-mundial" aria-pressed="false">
+          <div class="widget-thumb">
+            <img src="assets/widgets/reloj-mundial-poster.png" alt="Widget Reloj mundial" loading="lazy" width="2000" height="1000">
+            <span class="widget-play-badge" aria-hidden="true">▶</span>
+          </div>
+          <div class="widget-card-meta">
+            <strong>Reloj mundial</strong>
+            <span>Zonas horarias</span>
+          </div>
+        </button>
+
+        <button class="widget-video-card" type="button" data-widget-pick="ajustes-rapidos" aria-pressed="false">
+          <div class="widget-thumb">
+            <img src="assets/widgets/ajustes-rapidos-poster.png" alt="Widget Ajustes rápidos" loading="lazy" width="2000" height="1000">
+            <span class="widget-play-badge" aria-hidden="true">▶</span>
+          </div>
+          <div class="widget-card-meta">
+            <strong>Ajustes rápidos</strong>
+            <span>Sistema</span>
+          </div>
+        </button>
+
+        <button class="widget-video-card" type="button" data-widget-pick="cpu-memoria" aria-pressed="false">
+          <div class="widget-thumb">
+            <img src="assets/widgets/cpu-memoria-poster.png" alt="Widget CPU y memoria" loading="lazy" width="2000" height="1000">
+            <span class="widget-play-badge" aria-hidden="true">▶</span>
+          </div>
+          <div class="widget-card-meta">
+            <strong>CPU y memoria</strong>
+            <span>Monitor</span>
+          </div>
+        </button>
+
+        <button class="widget-video-card" type="button" data-widget-pick="github" aria-pressed="false">
+          <div class="widget-thumb">
+            <img src="assets/widgets/github-poster.png" alt="Widget Contribuciones de GitHub (datos de muestra)" loading="lazy" width="2000" height="1000">
+            <span class="widget-play-badge" aria-hidden="true">▶</span>
+          </div>
+          <div class="widget-card-meta">
+            <strong>GitHub</strong>
+            <span>Datos de muestra</span>
+          </div>
+        </button>
+      </div>
+
+      <h3 class="shot-subtitle">Dock en alta resolución por tema</h3>
+      <div class="shot-grid-wide">
+        <figure class="shot-card">
+          <img src="assets/fotos-compact/dock-liquidGlass.jpg" alt="Dock con el tema Liquid Glass" loading="lazy" width="2720" height="240">
+          <figcaption>Liquid Glass</figcaption>
+        </figure>
+        <figure class="shot-card">
+          <img src="assets/fotos-compact/dock-notchyGlass.jpg" alt="Dock con el tema Notchy Glass" loading="lazy" width="2720" height="240">
+          <figcaption>Notchy Glass</figcaption>
+        </figure>
+        <figure class="shot-card">
+          <img src="assets/fotos-compact/dock-cyberNeon.jpg" alt="Dock con el tema Cyber Neon" loading="lazy" width="2720" height="240">
+          <figcaption>Cyber Neon</figcaption>
+        </figure>
+        <figure class="shot-card">
+          <img src="assets/fotos-compact/dock-sunsetWarm.jpg" alt="Dock con el tema Sunset Warm" loading="lazy" width="2720" height="240">
+          <figcaption>Sunset Warm</figcaption>
+        </figure>
+        <figure class="shot-card">
+          <img src="assets/fotos-compact/dock-pixelRetro.jpg" alt="Dock con el tema Pixel Retro" loading="lazy" width="2720" height="240">
+          <figcaption>Pixel Retro</figcaption>
+        </figure>
+        <figure class="shot-card">
+          <img src="assets/fotos-compact/dock-christmas.jpg" alt="Dock con el tema Christmas" loading="lazy" width="2720" height="240">
+          <figcaption>Christmas</figcaption>
+        </figure>
+        <figure class="shot-card">
+          <img src="assets/fotos-compact/dock-neonRain.jpg" alt="Dock con el tema Neon Rain" loading="lazy" width="2720" height="240">
+          <figcaption>Neon Rain</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section container" id="workspaces">
+      <div class="section-head">
+        <p class="eyebrow">ARQUITECTURA MODULAR</p>
+        <h2>Pequeño por fuera.<br>Ordenado por dentro.</h2>
+        <p>
+          Workspaces independientes, actividades en vivo y convivencia configurable con el Dock
+          nativo de macOS y con Notchy.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="icon" aria-hidden="true">▤</span>
+          <h3>Workspaces independientes</h3>
+          <p>
+            Crea, renombra, elimina y alterna espacios de trabajo (el último no se puede eliminar).
+            Cada uno guarda sus apps, carpetas, separadores y widgets. Configura tamaño de iconos,
+            ampliación, etiquetas, solapamiento y ocultación automática.
+          </p>
+          <span class="tag">ESPACIOS</span>
+        </article>
+
+        <article class="feature-card">
+          <span class="icon" aria-hidden="true">⌘</span>
+          <h3>Atajos y trackpad</h3>
+          <p>
+            Cambia de espacio al instante con <code>Control–Opción–1</code> a
+            <code>Control–Opción–9</code>, desde el selector de workspace o mediante un gesto de
+            trackpad habilitado. Los gestos nativos de macOS permanecen separados.
+          </p>
+          <span class="tag">NAVEGACIÓN</span>
+        </article>
+
+        <article class="feature-card">
+          <span class="icon" aria-hidden="true">◉</span>
+          <h3>Marcador «Apps abiertas»</h3>
+          <p>
+            Muestra las aplicaciones en ejecución que no están fijadas. Un marcador móvil define su
+            posición en cada workspace (si falta, aparecen al final) y su menú contextual permite
+            activarlas o fijarlas.
+          </p>
+          <span class="tag">VENTANAS</span>
+        </article>
+
+        <article class="feature-card">
+          <span class="icon" aria-hidden="true">✦</span>
+          <h3>Actividades en vivo</h3>
+          <p>
+            Presentaciones compactas y expandidas sobre el Dock para multimedia, letras, Pomodoro,
+            cambios de workspace, estado de agentes, calendario, tiempo, batería y HUDs de volumen y
+            brillo.
+          </p>
+          <span class="tag">SUPERFICIES</span>
+        </article>
+
+        <article class="feature-card">
+          <span class="icon" aria-hidden="true">⇄</span>
+          <h3>Coordinación con Notchy</h3>
+          <p>
+            Protocolo local opcional mediante notificaciones distribuidas y concesión renovable
+            (<em>lease</em>) para enrutar los HUDs de volumen y brillo por pantalla. Al expirar la
+            concesión, Notchy retoma su propio HUD.
+          </p>
+          <span class="tag">NOTCHY</span>
+        </article>
+
+        <article class="feature-card">
+          <span class="icon" aria-hidden="true">⚙</span>
+          <h3>Dock nativo de macOS</h3>
+          <p>
+            Puede ajustar la ocultación automática del Dock nativo con retardo de 10 s, guardar
+            copia de seguridad y reiniciar el proceso <code>Dock</code>. Incluye la acción
+            <strong>Restore macOS Dock</strong>.
+          </p>
+          <span class="tag">SISTEMA</span>
+        </article>
+      </div>
+
+      <p class="note">
+        <strong>Almacenamiento local:</strong> los workspaces se guardan en
+        <code>~/Library/Application Support/MagicDock/workspaces.json</code>; el resto de
+        preferencias usan el sistema estándar <code>defaults</code> de macOS. La coordinación con
+        Notchy es un protocolo local experimental; conviene validar pantalla completa y
+        configuraciones multimonitor.
+      </p>
+    </section>
+
+    <section class="section container" id="widgets">
+      <div class="section-head">
+        <p class="eyebrow">A TU MANERA</p>
+        <h2>Widgets por categorías.<br>Tu combinación.</h2>
+        <p>
+          Busca widgets, añádelos al workspace activo, reordénalos o quítalos cuando quieras. Los
+          paneles se abren sobre el Dock adoptando el tema activo.
+        </p>
+      </div>
+
+      <div class="widget-grid">
+        <div class="widget"><span>♫</span> Reproductor</div>
+        <div class="widget"><span>▦</span> Calendario</div>
+        <div class="widget"><span>☀</span> Tiempo (Open-Meteo)</div>
+        <div class="widget"><span>◷</span> Pomodoro</div>
+        <div class="widget"><span>◔</span> Cuenta atrás y cronómetro</div>
+        <div class="widget"><span>▤</span> Bandeja de archivos</div>
+        <div class="widget"><span>✎</span> Nota rápida</div>
+        <div class="widget"><span>±</span> Calculadora y conversores</div>
+        <div class="widget"><span>◉</span> CPU, RAM y disco</div>
+        <div class="widget"><span>⚡</span> Batería y energía</div>
+        <div class="widget"><span>◈</span> Ajustes y color</div>
+        <div class="widget"><span>♥</span> Hábitos y pausas</div>
+        <div class="widget"><span>⌂</span> Apple Home (Atajos)</div>
+        <div class="widget"><span>⌘</span> GitHub y agentes IA</div>
+        <div class="widget"><span>◫</span> Reloj mundial</div>
+        <button type="button" class="widget widget-more-tile" aria-expanded="false" aria-controls="more-widgets-drawer">
+          <span>+</span> Y más… (ver los 32)
+        </button>
+      </div>
+
+      <div class="more-drawer" id="more-widgets-drawer" hidden>
+        <div class="more-categories">
+          <div class="more-category">
+            <h4>Productividad y estudio</h4>
+            <div class="more-pills">
+              <span>Calculadora</span>
+              <span>Cuenta atrás</span>
+              <span>Cronómetro</span>
+              <span>Conversor de unidades</span>
+              <span>Conversor de bases</span>
+              <span>Conversor de texto</span>
+              <span>Contador de caracteres</span>
+              <span>Flashcards</span>
+            </div>
+          </div>
+          <div class="more-category">
+            <h4>Sistema y bienestar</h4>
+            <div class="more-pills">
+              <span>Almacenamiento en disco</span>
+              <span>Detalles de batería</span>
+              <span>Papelera del Dock</span>
+              <span>Cuentagotas de color</span>
+              <span>Guía de respiración</span>
+              <span>Contador de agua</span>
+            </div>
+          </div>
+          <div class="more-category">
+            <h4>Ocio y juegos rápidos</h4>
+            <div class="more-pills">
+              <span>Tres en raya</span>
+              <span>Piedra, papel o tijera</span>
+              <span>Ideas de ocio</span>
+              <span>Bola 8 mágica</span>
+              <span>Adivina el número</span>
+              <span>Dado aleatorio</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <article class="feature-card">
+          <h3>Servicios y panel no activante</h3>
+          <p>
+            El widget de tiempo envía únicamente la ciudad configurada al servicio de geocodificación
+            de Open-Meteo y usa esas coordenadas para la previsión, sin clave API ni sensor GPS.
+          </p>
+          <p>
+            Algunos widgets con entrada de texto (como Nota rápida o conversores) están limitados
+            por el panel no activante de macOS y ofrecen acciones explícitas de pegado.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Límites de widgets conectados</h3>
+          <p>
+            La cuadrícula de contribuciones de GitHub usa actualmente <strong>datos de ejemplo</strong>,
+            no un feed en directo. El monitor de agentes IA solo refleja eventos explícitos enviados
+            por integraciones compatibles.
+          </p>
+          <p class="note">
+            Los controles de Apple Home invocan Atajos de macOS configurados por el usuario y pueden
+            abrir Casa o Atajos; no descubren accesorios HomeKit directamente.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="consumo">
+      <div class="section-head">
+        <p class="eyebrow">MEDICIÓN PUNTUAL</p>
+        <h2>Los números,<br>con contexto.</h2>
+        <p>
+          Instantánea real tomada en un Mac concreto. No constituye una garantía de consumo
+          constante ni una comparativa entre temas.
+        </p>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <span>CPU OBSERVADA</span>
+          <strong>0,0–0,3<span>%</span></strong>
+          <p>Media de 0,08 % vía <code>ps</code> (100 % equivale aprox. a un núcleo lógico).</p>
+        </div>
+        <div class="metric">
+          <span>MEMORIA RESIDENTE</span>
+          <strong>47,8–48,5 <span>MiB</span></strong>
+          <p>Media ~48,3 MiB (~0,59 % de 8 GiB físicos). No equivale a <em>physical footprint</em>.</p>
+        </div>
+        <div class="metric">
+          <span>GPU · COMUNICADA POR USUARIO</span>
+          <strong>0,5<span>%</span></strong>
+          <p>Máximo observado comunicado por el usuario desde Monitor de Actividad.</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <p>
+          <strong>Contexto de la muestra:</strong> tomada el 20 de noviembre de 2026 hacia las 12:27 CET
+          con la compilación <em>release</em> en ejecución en <code>/Applications</code> y tema
+          <strong>Notchy Glass</strong> activo, en un Mac Apple M2 de 8 GB de RAM con macOS
+          reportando versión 27.3 (5 muestras <code>ps</code> separadas ~2 s, sin interacción
+          controlada).
+        </p>
+        <p>
+          <strong>Sobre la GPU y limitaciones:</strong> el máximo del 0,5 % fue comunicado por el
+          usuario desde Monitor de Actividad durante su prueba (sin detalle de método ni duración; no
+          es una medición independiente ni una garantía). Los temas animados, widgets activos,
+          popups, tamaño de pantalla y actividad en primer plano pueden alterar sustancialmente el
+          consumo.
+        </p>
+      </div>
+    </section>
+
+    <section class="section container" id="privacidad">
+      <div class="section-head">
+        <p class="eyebrow">TÚ DECIDES</p>
+        <h2>Permisos y privacidad,<br>sin sorpresas.</h2>
+        <p>
+          La compilación actual no está aislada en sandbox. Cada función solicita permisos solo
+          cuando decides usarla.
+        </p>
+      </div>
+
+      <div class="details-grid">
+        <article class="feature-card">
+          <h3>Datos y servicios</h3>
+          <p>
+            <strong>Calendario (EventKit):</strong> solicita acceso completo solo tras una acción del
+            usuario y lee eventos localmente en memoria sin escribir cambios.
+          </p>
+          <p>
+            <strong>Tiempo (Open-Meteo):</strong> envía solo la ciudad configurada para obtener
+            coordenadas y previsión. Los accesos directos de ocio abren sitios externos en tu
+            navegador.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Permisos del sistema</h3>
+          <p>
+            Controlar Música, Spotify, YouTube Music o Safari puede requerir permiso de
+            Automatización (y permitir JavaScript desde Apple Events en Safari). Las funciones de
+            ventanas, gestos o HUD usan Accesibilidad cuando se activan.
+          </p>
+          <p>
+            La integración con agentes mediante <em>hooks</em> locales es opcional y sus
+            limitaciones están documentadas en <code>docs/agent-activity.md</code>.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="empezar">
+      <div class="section-head">
+        <p class="eyebrow">EMPEZAR</p>
+        <h2>El Dock es solo<br>el principio.</h2>
+        <p>
+          No se distribuyen binarios precompilados desde esta página. Docky se compila localmente
+          con Xcode para macOS 14 o posterior.
+        </p>
+      </div>
+
+      <div class="steps">
+        <article class="step">
+          <span>01</span>
+          <h3>Prueba y compila</h3>
+          <p>
+            Ejecuta <code>DEVELOPER_DIR=/Applications/Xcode-beta.app/Contents/Developer swift test -j 4</code>
+            y luego <code>./build-app.sh --run</code> (o <code>--install</code> para instalar en
+            <code>/Applications</code>).
+          </p>
+        </article>
+        <article class="step">
+          <span>02</span>
+          <h3>Organiza tus workspaces</h3>
+          <p>
+            Crea espacios para cada contexto, añade apps, carpetas y widgets, y sitúa el marcador
+            «Apps abiertas» donde prefieras.
+          </p>
+        </article>
+        <article class="step">
+          <span>03</span>
+          <h3>Ajusta tema y permisos</h3>
+          <p>
+            Elige uno de los 14 temas, configura iconos tematizados o nativos y activa los permisos
+            solo para las integraciones que necesites.
+          </p>
+        </article>
+      </div>
+
+      <p class="note">
+        En el equipo de desarrollo de referencia, las Command Line Tools independientes carecían de
+        macros de SwiftUI, por lo que fue necesario seleccionar Xcode con <code>DEVELOPER_DIR</code>.
+        El script firma con identidad local de desarrollo o <em>ad hoc</em>; una identidad estable
+        ayuda a conservar permisos entre compilaciones.
+      </p>
+    </section>
+
+    <section class="section container">
+      <div class="section-head">
+        <p class="eyebrow">PREGUNTAS FRECUENTES</p>
+        <h2>En pocas palabras.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>¿Hay un binario listo para descargar aquí?</summary>
+          <p>
+            No. Docky está en desarrollo activo y se compila localmente desde el código fuente con
+            Xcode mediante <code>./build-app.sh --run</code> o <code>--install</code>.
+          </p>
+        </details>
+        <details>
+          <summary>¿Cómo funciona la coordinación con Notchy?</summary>
+          <p>
+            Ambas apps pueden activar la coordinación local por notificaciones distribuidas y una
+            concesión renovable para enrutar los HUDs de volumen y brillo por pantalla. Si la
+            concesión expira, Notchy retoma su propio HUD.
+          </p>
+        </details>
+        <details>
+          <summary>¿Por qué GitHub muestra datos de ejemplo?</summary>
+          <p>
+            La vista de contribuciones de GitHub usa actualmente datos de ejemplo en lugar de una
+            conexión en directo con la API de GitHub.
+          </p>
+        </details>
+        <details>
+          <summary>¿Puedo restaurar el Dock nativo de macOS?</summary>
+          <p>
+            Sí. Docky incluye la acción <strong>Restore macOS Dock</strong> para restaurar la copia
+            de seguridad y reiniciar el proceso <code>Dock</code>, aunque no garantiza recuperación
+            automática tras cualquier fallo inesperado.
+          </p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="brand-group">
+        <a class="brand" href="#inicio">docky<span class="brand-period">.</span></a>
+        <a class="suite-pill" href="../notchy/index.html">Ver Notchy ↗</a>
+      </div>
+      <p>Dock modular para macOS con workspaces, widgets y temas.</p>
+      <p>Hecho con Swift, SwiftUI y AppKit · Suite junto a Notchy</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="simulator.js"></script>
+</body>
+</html>
